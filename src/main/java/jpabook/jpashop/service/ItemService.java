@@ -1,5 +1,6 @@
 package jpabook.jpashop.service;
 
+import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,18 @@ public class ItemService {
     @Transactional
     public void save(Item item) {
         itemRepository.save(item);
+    }
+
+    @Transactional
+    public void updateItem(Long itemId, String name, int price, int stockQuantity) {
+        // 변경 감지
+        Item findItem = itemRepository.findOnd(itemId);
+
+        // 되도록이면 set 사용 x
+        // change 같은 메서드 만들어서 값 변경을 추적 가능하도록 설계하는 것을 추천 
+        findItem.setName(name);
+        findItem.setPrice(price);
+        findItem.setStockQuantity(stockQuantity);
     }
 
     public List<Item> findItem() {
