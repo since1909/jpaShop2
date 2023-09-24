@@ -26,7 +26,7 @@ public class ItemService {
         Item findItem = itemRepository.findOnd(itemId);
 
         // 되도록이면 set 사용 x
-        // change 같은 메서드 만들어서 값 변경을 추적 가능하도록 설계하는 것을 추천 
+        // change 같은 메서드 만들어서 값 변경을 추적 가능하도록 설계하는 것을 추천
         findItem.setName(name);
         findItem.setPrice(price);
         findItem.setStockQuantity(stockQuantity);
